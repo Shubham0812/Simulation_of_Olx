@@ -20,3 +20,5 @@ e)	Notifications: - The user can see the notifications which were provided by th
 
 f)	Logout: - Ends the current session of the user.
 
+Suggestionz on improving the code is always welcomed. 
+
