@@ -1,6 +1,6 @@
 // implementation of the OLX
 
-// created by NMIT CSE_3 => Shubham Kr. Singh , Shashi Prakash , Sushent Maloo & Suyash Sudhir//
+// created by NMIT CSE_3 => Shubham Kr. Singh
 
 //header files//
 #include <cstdlib>
@@ -16,6 +16,7 @@
 #define MAX_LENGHT     128
 #define ENTER           13
 #define BACKSPACE        8
+#define QUITER          113
 
 using namespace std;
 
@@ -2269,12 +2270,17 @@ void loginuped()
                               BACKGROUND_INTENSITY);
 
             cout<<"\n\t\tLogin Page" << endl;
+            cout<<"\n\t\t\t\t\t\t\t\t\tPress q to Quit\t\npress any key to continue";
+            ch=getch();
+                  if(ch==QUITER)
+                  return;
             cout<<"\n\n\tEmail id : ";
             cin>>e;
             cout<<"\n\n\tEnter Password : ";
             while(true)
                             {
                                 ch=getch();
+
                                 if(pos1>=MAX_LENGHT) {cout<<'\a'; continue;} //beep sound if password is long than 128//
 
                                 if(ch==ENTER) break;  //if ch = '13' then break//
@@ -2315,6 +2321,7 @@ void loginuped()
                 cout<<"\n\n\t Login Failed ";
                 getch();
                 if(count==3)
+
                 {
                      failmenu();
                      count=0;
@@ -2528,6 +2535,7 @@ void reader()
 
 
 void adminuped()
+
 {   fp.open("admin.dat",ios::app);
     fp.close();
     char ch;
@@ -2685,10 +2693,9 @@ int setup()
 	title();
 	date();
 	ifstream in("admin.dat",ios::in);
-	if(in.is_open())
+	if(in)
         {
-
-		return 0;
+		return 1;
         }
 	cout<<endl<<"Initiating the Program For first time usage... ";
 	cout<<"\n Please wait ";
@@ -2711,7 +2718,7 @@ int setup()
 int main()
 {        intro();
         char today[11];
-        if(setup()==1) {
+        if(setup()==0) {
 		cout<<"Files are missing and unable to create new files...\n Please try again..."; Sleep(2000);
 		exit(0);
 	}
